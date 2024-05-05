@@ -1,0 +1,277 @@
+---
+import { firstCapitalLetter, getParsedStats } from "../../core/motor";
+let {
+	number,
+	name,
+	types,
+	height,
+	weight,
+	frontSprite,
+	backSprite,
+	pokemonDescription,
+	pokemonStats,
+} = Astro.props;
+
+const stats = getParsedStats(pokemonStats);
+---
+
+<section class="py-10">
+	<header class="py-4 mx-auto text-center lg:mt-8 lg:py-8">
+		<h1 class="text-gray-900 text-4xl font-bold tracking-tight">
+			No. {number} - {firstCapitalLetter(name)}
+		</h1>
+		<hr class="h-px border-0 dark:bg-gray-400 max-w-4xl mx-auto mt-4" />
+	</header>
+	<div
+		class="bg-white border border-gray-300 border-opacity-50 shadow-md py-8 px-8 mb-4 max-w-xl mx-4 rounded-md flex justify-evenly lg:mx-auto"
+	>
+		<img class="w-36" src={backSprite} />
+		<img class="w-36" src={frontSprite} />
+	</div>
+	<div class="mb-2 pt-4 mx-w-sm flex text-sm justify-center gap-8">
+		<p><strong>Height: </strong>{height} m</p>
+		<p><strong>Weight: </strong>{weight} kg</p>
+		<p>
+			<strong>Type: </strong>{
+				types[1]
+					? firstCapitalLetter(types[0].type.name) +
+						" / " +
+						firstCapitalLetter(types[1].type.name)
+					: firstCapitalLetter(types[0].type.name)
+			}
+		</p>
+	</div>
+	<div
+		class="bg-cyan-50 max-w-md tracking-tight p-2 shadow-md rounded-md mx-4 mb-8 flex gap-2 lg:mx-auto"
+	>
+		<svg
+			xmlns="http://www.w3.org/2000/svg"
+			width="3rem"
+			height="3rem"
+			viewBox="0 0 100 100"
+		>
+			<path
+				d="M 30 50
+                a 1 1 1 0 1 40 0
+                h-12.5
+                a 1 1 1 0 0 -15 0
+                z"
+				fill="#f00"
+				stroke="#222"></path>
+			<circle cx="50" cy="50" r="5" fill="#222" stroke="#222"></circle>
+			<path
+				d="M 30 50
+                a 1 1 1 0 0 40 0
+                h-12.5
+                a 1 1 1 0 1 -15 0
+                z"
+				fill="#fff"
+				stroke="#222"></path>
+		</svg>
+		<p>{pokemonDescription}</p>
+	</div>
+	<div class="flex flex-col items-center max-w-md mx-4 lg:mx-auto">
+		<div>
+			<h2 class="bg-gray-300 font-bold text-md text-center rounded-t-md py-1 px-8">
+				Base Stats
+			</h2>
+			<table class="border-gray-300 bg-white border rounded-md shadow-md text-md">
+				<tr>
+					<th class="px-10" class="px-10">HP</th>
+					<td class="">{stats.hp}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.hp < 41,
+								},
+								{
+									"bg-orange-400": stats.hp >= 41 && stats.hp < 60,
+								},
+								{
+									"bg-yellow-500": stats.hp >= 60 && stats.hp < 80,
+								},
+								{
+									"bg-yellow-300": stats.hp >= 80 && stats.hp < 100,
+								},
+								{
+									"bg-lime-400": stats.hp >= 100 && stats.hp < 120,
+								},
+								{
+									"bg-green-400": stats.hp >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.hp}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Attack</th>
+					<td>{stats.attack}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.attack < 41,
+								},
+								{
+									"bg-orange-400": stats.attack >= 41 && stats.attack < 60,
+								},
+								{
+									"bg-yellow-500": stats.attack >= 60 && stats.attack < 80,
+								},
+								{
+									"bg-yellow-300": stats.attack >= 80 && stats.attack < 100,
+								},
+								{
+									"bg-lime-400": stats.attack >= 100 && stats.attack < 120,
+								},
+								{
+									"bg-green-400": stats.attack >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.attack}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Defense</th>
+					<td>{stats.defense}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.defense < 41,
+								},
+								{
+									"bg-orange-400": stats.defense >= 41 && stats.defense < 60,
+								},
+								{
+									"bg-yellow-500": stats.defense >= 60 && stats.defense < 80,
+								},
+								{
+									"bg-yellow-300": stats.defense >= 80 && stats.defense < 100,
+								},
+								{
+									"bg-lime-400": stats.defense >= 100 && stats.defense < 120,
+								},
+								{
+									"bg-green-400": stats.defense >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.defense}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>S. Attack</th>
+					<td>{stats.specialAttack}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.specialAttack < 41,
+								},
+								{
+									"bg-orange-400": stats.specialAttack >= 41 && stats.specialAttack < 60,
+								},
+								{
+									"bg-yellow-500": stats.specialAttack >= 60 && stats.specialAttack < 80,
+								},
+								{
+									"bg-yellow-300":
+										stats.specialAttack >= 80 && stats.specialAttack < 100,
+								},
+								{
+									"bg-lime-400": stats.specialAttack >= 100 && stats.specialAttack < 120,
+								},
+								{
+									"bg-green-400": stats.specialAttack >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.specialAttack}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>S. Defense</th>
+					<td>{stats.specialDefense}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.specialDefense < 41,
+								},
+								{
+									"bg-orange-400":
+										stats.specialDefense >= 41 && stats.specialDefense < 60,
+								},
+								{
+									"bg-yellow-500":
+										stats.specialDefense >= 60 && stats.specialDefense < 80,
+								},
+								{
+									"bg-yellow-300":
+										stats.specialDefense >= 80 && stats.specialDefense < 100,
+								},
+								{
+									"bg-lime-400":
+										stats.specialDefense >= 100 && stats.specialDefense < 120,
+								},
+								{
+									"bg-green-400": stats.specialDefense >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.specialDefense}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Speed</th>
+					<td>{stats.speed}</td>
+					<td class="w-72 px-4">
+						<div
+							class:list={[
+								"rounded h-4",
+								{
+									"bg-red-400": stats.speed < 41,
+								},
+								{
+									"bg-orange-400": stats.speed >= 41 && stats.speed < 60,
+								},
+								{
+									"bg-yellow-500": stats.speed >= 60 && stats.speed < 80,
+								},
+								{
+									"bg-yellow-300": stats.speed >= 80 && stats.speed < 100,
+								},
+								{
+									"bg-lime-400": stats.speed >= 100 && stats.speed < 120,
+								},
+								{
+									"bg-green-400": stats.speed >= 120,
+								},
+							]}
+							style=`width: calc(100% * ${stats.speed}/288)`
+						>
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<th>Total</th>
+					<td>{stats.total}</td>
+				</tr>
+			</table>
+		</div>
+	</div>
+</section>

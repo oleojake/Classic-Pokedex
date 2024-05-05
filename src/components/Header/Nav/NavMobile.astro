@@ -1,0 +1,43 @@
+---
+import { POKEMON_TYPES } from "../../../core/pokemon_types";
+import HeaderNavListItem from "./NavMobileItem.astro";
+---
+
+<nav
+	class="py-4 px-4 mx-auto max-w-4xl text-center justify-items-center flex justify-center lg:px-6 lg:hidden"
+>
+	<button
+		id="dropdownBottomButton"
+		data-dropdown-toggle="dropdownBottom"
+		data-dropdown-placement="bottom"
+		class="me-3 mb-3 md:mb-0 text-black bg-gray-300 hover:bg-gray-400 font-medium text-lg px-5 py-2.5 text-center inline-flex items-center"
+		type="button"
+		>Filter by Type <svg
+			class="w-2.5 h-2.5 ms-3"
+			aria-hidden="true"
+			xmlns="http://www.w3.org/2000/svg"
+			fill="none"
+			viewBox="0 0 10 6"
+		>
+			<path
+				stroke="currentColor"
+				stroke-linecap="round"
+				stroke-linejoin="round"
+				stroke-width="2"
+				d="m1 1 4 4 4-4"></path>
+		</svg>
+	</button>
+	<!-- Dropdown -->
+	<div
+		id="dropdownBottom"
+		class="z-10 hidden bg-white divide-y divide-gray-100 shadow w-44"
+	>
+		<ul class="py-2 text-sm text-gray-700" aria-labelledby="dropdownBottomButton">
+			{
+				POKEMON_TYPES.map((type) => (
+					<HeaderNavListItem href={type}>{type}</HeaderNavListItem>
+				))
+			}
+		</ul>
+	</div>
+</nav>

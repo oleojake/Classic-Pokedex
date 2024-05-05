@@ -1,0 +1,10 @@
+---
+let { href } = Astro.props;
+---
+
+<a
+	class="bg-gray-300 p-1 w-20 cursor-pointer font-light hover:font-semibold hover:bg-gray-400 first-letter:capitalize"
+	href={`/type/${href}`}
+>
+	<slot />
+</a>

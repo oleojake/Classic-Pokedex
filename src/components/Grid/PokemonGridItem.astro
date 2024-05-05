@@ -1,0 +1,42 @@
+---
+import { firstCapitalLetter } from "../../core/motor";
+
+const { src, number, name } = Astro.props;
+---
+
+<a href={`/pokemon/${name}`}>
+	<div
+		class="p-4 m-4 flex flex-col items-center rounded-lg cursor-pointer bg-white hover:shadow-md hover:scale-105 transition-all"
+	>
+		<img class="w-24 mb-2" src={src} />
+		<p>{`No. ${number.toString().padStart(3, "0")}`}</p>
+		<div class="flex items-center">
+			<svg
+				class="hidden lg:block"
+				xmlns="http://www.w3.org/2000/svg"
+				width="2rem"
+				height="2rem"
+				viewBox="0 0 100 100"
+			>
+				<path
+					d="M 30 50
+					a 1 1 1 0 1 40 0
+					h-12.5
+					a 1 1 1 0 0 -15 0
+					z"
+					fill="#f00"
+					stroke="#222"></path>
+				<circle cx="50" cy="50" r="5" fill="#222" stroke="#222"></circle>
+				<path
+					d="M 30 50
+					a 1 1 1 0 0 40 0
+					h-12.5
+					a 1 1 1 0 1 -15 0
+					z"
+					fill="#fff"
+					stroke="#222"></path>
+			</svg>
+			<p><strong>{firstCapitalLetter(name)}</strong></p>
+		</div>
+	</div>
+</a>

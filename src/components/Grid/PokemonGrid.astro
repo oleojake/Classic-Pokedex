@@ -1,0 +1,17 @@
+---
+import type { PokeAPI } from "../../core/model.api";
+import PokemonGridItem from "./PokemonGridItem.astro";
+const { pokemonList } = Astro.props;
+---
+
+<section class="mx-auto max-w-5xl grid grid-cols-3 lg:grid-cols-6">
+	{
+		pokemonList.map((pokemon: PokeAPI) => (
+			<PokemonGridItem
+				src={pokemon.sprites.versions?.["generation-ii"].crystal.front_default}
+				number={pokemon.id}
+				name={pokemon.name}
+			/>
+		))
+	}
+</section>

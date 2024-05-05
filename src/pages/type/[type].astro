@@ -1,0 +1,27 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { POKEMON_TYPES } from "../../core/pokemon_types";
+import { getPokemonListInfo } from "../../core/pokemon.api";
+import { filterPokemonByType, firstCapitalLetter } from "../../core/motor";
+import PokemonGrid from "../../components/Grid/PokemonGrid.astro";
+import GridTitle from "../../components/Grid/GridTitle.astro";
+
+const { type } = Astro.params;
+
+export function getStaticPaths() {
+	return POKEMON_TYPES.map((type) => ({
+		params: { type: type },
+	}));
+}
+
+const pokemonList = await getPokemonListInfo();
+const pokemonByType = filterPokemonByType(pokemonList, type);
+---
+
+<Layout title={firstCapitalLetter(type) + "-type Pokémon"}>
+	<GridTitle
+		h2={firstCapitalLetter(type) + " -type Pokémon"}
+		p="There are many different types of Pokémon; find out which ones suit your style best!"
+	/>
+	<PokemonGrid pokemonList={pokemonByType} />
+</Layout>

@@ -1,0 +1,16 @@
+---
+import { getPokemonListInfo } from "../core/pokemon.api";
+import Layout from "../layouts/Layout.astro";
+import GridTitle from "../components/Grid/GridTitle.astro";
+import PokemonGrid from "../components/Grid/PokemonGrid.astro";
+
+const pokemonList = await getPokemonListInfo();
+---
+
+<Layout title="Classic Pokédex by OleojakeDev">
+	<GridTitle
+		h2="Gotta catch 'em all!"
+		p="Pokémon are the creatures that can be caught using Pokéballs and trained by battling with other Pokémon"
+	/>
+	<PokemonGrid pokemonList={pokemonList} />
+</Layout>

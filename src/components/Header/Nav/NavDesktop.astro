@@ -1,0 +1,14 @@
+---
+import { POKEMON_TYPES } from "../../../core/pokemon_types";
+import HeaderNavTypeButton from "./NavDesktopItem.astro";
+---
+
+<nav
+	class="py-4 px-4 mx-auto max-w-3xl grid-cols-4 text-center justify-items-center gap-1 hidden lg:px-6 lg:grid-cols-8 lg:grid"
+>
+	{
+		POKEMON_TYPES.map((type) => (
+			<HeaderNavTypeButton href={type}>{type}</HeaderNavTypeButton>
+		))
+	}
+</nav>

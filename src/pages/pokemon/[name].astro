@@ -1,0 +1,53 @@
+---
+import {
+	getPokemonByUrl,
+	getPokemonDescription,
+	getFirstGenerationPokemon,
+} from "../../core/pokemon.api";
+import type { PokemonFromList } from "../../core/model.api";
+import { firstCapitalLetter } from "../../core/motor";
+import Layout from "../../layouts/Layout.astro";
+import PokemonDetails from "../../components/Grid/PokemonDetails.astro";
+
+const { name } = Astro.params;
+
+export async function getStaticPaths() {
+	const pokemonList: PokemonFromList[] = await getFirstGenerationPokemon();
+	return pokemonList.map((pokemon) => ({
+		params: { name: pokemon.name },
+	}));
+}
+
+const pokemonInfo = await getPokemonByUrl(
+	`https://pokeapi.co/api/v2/pokemon/${name}/`
+);
+// Fixing up Values for Layaout
+const pokemonName = pokemonInfo.name;
+const pokemonNumber = pokemonInfo.id;
+const pokemonTypes = pokemonInfo.types;
+const pokemonHeight = pokemonInfo.height / 10;
+const pokemonWeight = pokemonInfo.weight / 10;
+const pokemonFrontSprite =
+	pokemonInfo.sprites.versions?.["generation-ii"].crystal.front_default;
+const pokemonBackSprite =
+	pokemonInfo.sprites.versions?.["generation-ii"].crystal.back_default;
+const pokemonStats = pokemonInfo.stats;
+// Description
+const pokemonDescription = await getPokemonDescription(
+	pokemonNumber.toString()
+);
+---
+
+<Layout title={`#${pokemonNumber} - ` + firstCapitalLetter(pokemonName)}>
+	<PokemonDetails
+		name={pokemonName}
+		number={pokemonNumber}
+		types={pokemonTypes}
+		height={pokemonHeight}
+		weight={pokemonWeight}
+		frontSprite={pokemonFrontSprite}
+		backSprite={pokemonBackSprite}
+		pokemonStats={pokemonStats}
+		pokemonDescription={pokemonDescription}
+	/>
+</Layout>
