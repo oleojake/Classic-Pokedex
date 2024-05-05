@@ -5,6 +5,7 @@ Classic Pokédex that shows the 151 Pokémon from the first generation. It uses:
 - **Astro**
 - **Tailwind**
 
+[🚀 Live](https://classic-pokedex.netlify.app/)
 
 ![desktop-screen](./public/desktop-screen.JPG)
 ![mobile-screen](./public/mobile-screen.JPG)
