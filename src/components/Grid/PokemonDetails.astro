@@ -18,7 +18,7 @@ const stats = getParsedStats(pokemonStats);
 <section class="py-10">
 	<header class="py-4 mx-auto text-center lg:mt-8 lg:py-8">
 		<h1 class="text-gray-900 text-4xl font-bold tracking-tight">
-			No. {number} - {firstCapitalLetter(name)}
+			No. {number.toString().padStart(3,'0')} - {firstCapitalLetter(name)}
 		</h1>
 		<hr class="h-px border-0 dark:bg-gray-400 max-w-4xl mx-auto mt-4" />
 	</header>
@@ -76,7 +76,7 @@ const stats = getParsedStats(pokemonStats);
 				Base Stats
 			</h2>
 			<table class="border-gray-300 bg-white border rounded-md shadow-md text-md">
-				<tr>
+				<tr >
 					<th class="px-10" class="px-10">HP</th>
 					<td class="">{stats.hp}</td>
 					<td class="w-72 px-4">

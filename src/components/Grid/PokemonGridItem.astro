@@ -8,7 +8,7 @@ const { src, number, name } = Astro.props;
 	<div
 		class="p-4 m-4 flex flex-col items-center rounded-lg cursor-pointer bg-white hover:shadow-md hover:scale-105 transition-all"
 	>
-		<img class="w-24 mb-2" src={src} />
+		<img class="w-24 mb-2" src={src} alt={name}/>
 		<p>{`No. ${number.toString().padStart(3, "0")}`}</p>
 		<div class="flex items-center">
 			<svg
@@ -36,7 +36,7 @@ const { src, number, name } = Astro.props;
 					fill="#fff"
 					stroke="#222"></path>
 			</svg>
-			<p><strong>{firstCapitalLetter(name)}</strong></p>
+			<p class="first-letter:capitalize"><strong>{name}</strong></p>
 		</div>
 	</div>
 </a>
