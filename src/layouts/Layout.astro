@@ -18,7 +18,8 @@ const { title } = Astro.props;
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.png" />
 		<meta name="generator" content={Astro.generator} />
-		<title>{title}</title>
+		<title>⚡ {title}</title>
+		<meta name="description" content="Exploring the Original 151 Pokémon: Insights and Information">
 		<link
 			rel="stylesheet"
 			href="https://unpkg.com/flowbite@1.5.1/dist/flowbite.min.css"
@@ -47,7 +48,7 @@ const { title } = Astro.props;
 	html {
 		font-family: system-ui, sans-serif;
 		background: #f1f1f1;
-		background-image: url("../../public/pokeball-blur.png");
+		background-image: url("/pokeball-blur.png");
 		background-repeat: no-repeat;
 		background-attachment: fixed;
 		background-size: 75vw;
