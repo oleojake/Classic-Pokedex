@@ -11,7 +11,7 @@ const { src, number, name } = Astro.props;
 		<img class="w-24 mb-2" src={src} alt={name}/>
 		<p>{`No. ${number.toString().padStart(3, "0")}`}</p>
 		<div class="flex items-center">
-			<img class="max-w-4 max-h-4 m-1" src="/pokeball-8bit.png" alt="pokeball"/>
+			<img class="max-w-4 max-h-4 m-1 hidden sm:flex" src="/pokeball-8bit.png" alt="pokeball"/>
 			<p class="first-letter:capitalize"><strong>{name}</strong></p>
 		</div>
 	</div>
